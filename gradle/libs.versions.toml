@@ -8,6 +8,7 @@ coilComposeVersion = "2.2.2"
 faceDetection = "16.1.7"
 faceDetectionVersion = "16.1.4"
 foundation = "1.7.8"
+googleFaceDetection = "16.0.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -44,6 +45,7 @@ androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "
 coil-compose-v210 = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 coil-kt-coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
 face-detection = { module = "com.google.mlkit:face-detection", version.ref = "faceDetection" }
+face-detection-v1600 = { module = "com.google.mlkit:face-detection", version.ref = "googleFaceDetection" }
 face-detection-v1614 = { module = "com.google.mlkit:face-detection", version.ref = "faceDetectionVersion" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

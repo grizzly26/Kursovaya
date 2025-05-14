@@ -93,35 +93,7 @@ fun ProfileViewScreen(navController: NavController, profileId: Int) {
                     contentScale = ContentScale.Crop
                 )
 
-                // Прическа с оффсетом
-                getHairResource(profile.hairStyle)?.let { hairRes ->
-                    AsyncImage(
-                        model = hairRes,
-                        contentDescription = "Прическа",
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .offset(
-                                x = profile.hairOffsetX.dp,
-                                y = profile.hairOffsetY.dp
-                            )
-                            .clip(RoundedCornerShape(16.dp)) // Обеспечивает сохранение округленных углов
-                    )
-                }
 
-                // Борода с оффсетом
-                getBeardResource(profile.beardStyle)?.let { beardRes ->
-                    AsyncImage(
-                        model = beardRes,
-                        contentDescription = "Борода",
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .offset(
-                                x = profile.beardOffsetX.dp,
-                                y = profile.beardOffsetY.dp
-                            )
-                            .clip(RoundedCornerShape(16.dp)) // Обеспечивает сохранение округленных углов
-                    )
-                }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -309,34 +281,3 @@ fun ProfileViewScreen(navController: NavController, profileId: Int) {
 }
 
 
-fun getHairResource(style: String): Int? {
-    return when (style) {
-        "Андеркат" -> R.drawable.hair1
-        "Классика" -> R.drawable.hair2
-        "Кудри" -> R.drawable.hair3
-        "Короткая стрижка" -> R.drawable.hair4
-        "Бокс" -> R.drawable.hair5
-        "Полубокс" -> R.drawable.hair6
-        "Ирокез" -> R.drawable.hair7
-        "Гаврош" -> R.drawable.hair8
-        "Модерн" -> R.drawable.hair9
-        "Ретро" -> R.drawable.hair10
-        else -> null
-    }
-}
-
-fun getBeardResource(style: String): Int? {
-    return when (style) {
-        "Короткая борода" -> R.drawable.beard1
-        "Щетина" -> R.drawable.beard2
-        "Полная борода" -> R.drawable.beard3
-        "Без бороды" -> R.drawable.beard4
-        "Козлиная бородка" -> R.drawable.beard5
-        "Усы и борода" -> R.drawable.beard6
-        "Бальбо" -> R.drawable.beard7
-        "Якорь" -> R.drawable.beard8
-        "Шеврон" -> R.drawable.beard9
-        "Гарибальди" -> R.drawable.beard10
-        else -> null
-    }
-}

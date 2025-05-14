@@ -45,6 +45,7 @@ android {
 
 dependencies {
 
+    implementation (libs.face.detection.v1600)
     implementation(libs.coil.compose.v210)
     implementation (libs.androidx.compose.material3.material3.v100beta01)// Зависимость для Material3
     implementation (libs.ui) // Для Compose UI

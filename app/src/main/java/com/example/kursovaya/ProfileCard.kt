@@ -1,6 +1,8 @@
 package com.example.kursovaya
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,12 +32,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun ProfileCard(profile: UserProfile, onClick: () -> Unit, updateProfile: (UserProfile) -> Unit) {
     val context = LocalContext.current
     val db = remember { AppDatabase.getDatabase(context) }
     val scope = rememberCoroutineScope()
+
+    // Форматируем дату
+    val formattedDate = remember(profile.createdAt) {
+        val date = Date(profile.createdAt)
+        SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault()).format(date)
+    }
 
     Card(
         modifier = Modifier
@@ -59,23 +70,25 @@ fun ProfileCard(profile: UserProfile, onClick: () -> Unit, updateProfile: (UserP
                     .size(80.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
+
             Spacer(modifier = Modifier.width(16.dp))
 
             // Колонка с текстом профиля
             Column(
-                modifier = Modifier.weight(1f) // Чтобы колонки не сжимались
+                modifier = Modifier.weight(1f)
             ) {
-                Text("Имя: ${profile.name}", style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp), color = Color.Black) // Черный цвет текста и увеличен шрифт
+                Text("Имя: ${profile.name}", style = MaterialTheme.typography.titleMedium.copy(fontSize = 18.sp), color = Color.Black)
                 Text("Прическа: ${profile.hairStyle}", style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp), color = Color.Black)
                 Text("Борода: ${profile.beardStyle}", style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp), color = Color.Black)
+                Text("Создан: $formattedDate", style = MaterialTheme.typography.bodyMedium.copy(fontSize = 16.sp), color = Color.Black)
             }
 
-            // Иконка для добавления/удаления из избранных
+            // Иконка "Избранное"
             IconButton(onClick = {
                 scope.launch {
                     val updatedProfile = profile.copy(isFavorite = !profile.isFavorite)
                     db.userProfileDao().updateProfile(updatedProfile)
-                    updateProfile(updatedProfile) // Обновляем только один профиль
+                    updateProfile(updatedProfile)
                 }
             }) {
                 Icon(

@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.filled.Favorite
@@ -174,6 +175,19 @@ fun ProfileScreen(navController: NavController) {
                 }
             }
         }
+
+        // Кнопка "Назад", расположенная в левом нижнем углу
+        IconButton(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier
+                .align(Alignment.BottomStart) // Размещение кнопки в левом нижнем углу
+                .padding(16.dp) // Отступ от краев
+        ) {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack, // Используем стрелку назад
+                contentDescription = "Back",
+                tint = Color.White
+            )
+        }
     }
 }
-
